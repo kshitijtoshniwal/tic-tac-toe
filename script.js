@@ -102,6 +102,14 @@ const GameController = (function () {
         return gameOver;
     }
 
+    function resetGame() {
+        Gameboard.resetBoard();
+
+        activePlayer = players[0];
+        winner = null;
+        gameOver = false;
+    }
+
     function playRound(index) {
         if (gameOver) {
             return false;
@@ -140,6 +148,7 @@ const GameController = (function () {
         playRound,
         getActivePlayer,
         getWinner,
-        isGameOver
+        isGameOver,
+        resetGame
     };
 })();
