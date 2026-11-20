@@ -1,0 +1,12 @@
+
+/* Apply consistent sizing to every element */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove default spacing and establish the page */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
