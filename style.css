@@ -1,12 +1,73 @@
 
-/* Apply consistent sizing to every element */
+/* Global styles */
 * {
     box-sizing: border-box;
 }
 
-/* Remove default spacing and establish the page */
 body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main content */
+main {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 12px;
+}
+
+/* Game status */
+.game-status {
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+}
+
+/* Gameboard */
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 6px;
+}
+
+/* Individual cells */
+.cell {
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cell:hover:not(:disabled) {
+    background-color: #e8e8e8;
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+    color: #222;
+}
+
+/* Restart button */
+.restart-button {
+    margin-top: 24px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: #555;
 }

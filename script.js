@@ -152,3 +152,77 @@ const GameController = (function () {
         resetGame
     };
 })();
+
+
+
+const DisplayController = (function () {
+    const cells = document.querySelectorAll(".cell");
+    const status = document.querySelector(".game-status"); const restartButton = document.querySelector(".restart-button");
+
+
+    function renderBoard() {
+        const board = Gameboard.getBoard();
+
+        cells.forEach((cell, index) => {
+            cell.textContent = board[index] ?? "";
+        });
+    }
+
+    function renderStatus() {
+        if (GameController.isGameOver()) {
+            const winner = GameController.getWinner();
+
+            if (winner) {
+                status.textContent = `${winner.name} wins!`;
+            } else {
+                status.textContent = "It's a draw!";
+            }
+
+            return;
+        }
+
+        const activePlayer = GameController.getActivePlayer();
+
+        status.textContent =
+            `${activePlayer.name}'s turn (${activePlayer.marker})`;
+    }
+
+    function handleCellClick(event) {
+        const index = Number(event.target.dataset.index);
+
+        const moveSuccessful = GameController.playRound(index);
+
+        if (moveSuccessful) {
+            renderBoard();
+            renderStatus();
+        }
+    }
+
+    function handleRestartClick() {
+        GameController.resetGame();
+
+        renderBoard();
+        renderStatus();
+    }
+
+    function initialize() {
+        cells.forEach(cell => {
+            cell.addEventListener("click", handleCellClick);
+        });
+
+        restartButton.addEventListener("click", handleRestartClick);
+
+        renderBoard();
+        renderStatus();
+    }
+
+    return {
+        renderBoard,
+        renderStatus,
+        initialize
+    };
+})();
+
+DisplayController.initialize();
+
+
